@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+release/
+.data/
+.env
+playwright-report/
+test-results/
+public/models/
+*.log

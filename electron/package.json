@@ -1,0 +1,8 @@
+{
+  "name": "clearview-candidate",
+  "version": "0.1.0",
+  "description": "Clearview candidate monitoring client",
+  "author": "Clearview",
+  "main": "main.cjs",
+  "private": true
+}

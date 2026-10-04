@@ -1,0 +1,76 @@
+{
+  "name": "clearview-interview-integrity",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Consent-based interview monitoring with a desktop client and paired phone camera.",
+  "main": "electron/main.cjs",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "dev": "tsx watch server/index.ts",
+    "build": "npm run typecheck && vite build && tsc -p tsconfig.server.json",
+    "start": "node build/server/index.js",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.server.json --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "test:production": "node scripts/verify-production.mjs",
+    "format": "prettier --write src server shared electron tests scripts package.json tsconfig*.json *.ts README.md index.html public/favicon.svg",
+    "desktop": "electron .",
+    "desktop:package": "node scripts/package-desktop.mjs",
+    "models:setup": "node scripts/setup-models.mjs"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "^0.10.32",
+    "express": "^5.1.0",
+    "express-rate-limit": "^8.2.1",
+    "lucide-react": "^0.468.0",
+    "qrcode.react": "^4.2.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.0",
+    "selfsigned": "^5.5.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.13.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@types/supertest": "^6.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "electron": "^41.0.0",
+    "electron-builder": "^26.0.12",
+    "prettier": "^3.9.9",
+    "supertest": "^7.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0",
+    "vitest": "^4.1.11"
+  },
+  "build": {
+    "appId": "com.clearview.interview",
+    "productName": "Clearview Candidate",
+    "directories": {
+      "output": "release",
+      "app": "electron"
+    },
+    "files": [
+      "**/*"
+    ],
+    "win": {
+      "target": "portable",
+      "artifactName": "Clearview-Candidate-${version}.exe"
+    }
+  },
+  "allowScripts": {
+    "electron@41.10.7": true,
+    "esbuild@0.28.2": true,
+    "esbuild@0.25.12": true,
+    "electron-winstaller@5.4.0": true
+  }
+}
